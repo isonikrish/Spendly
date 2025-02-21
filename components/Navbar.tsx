@@ -7,7 +7,7 @@ import { Button } from "./ui/button";
 import useApp from "@/stores/useApp";
 import { useEffect } from "react";
 import { LayoutDashboard } from "lucide-react";
-import logo from "../public/logo.png";
+import logo from "../public/logo.jpg";
 
 function Navbar() {
   const router = useRouter();
