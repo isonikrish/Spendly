@@ -8,6 +8,7 @@ const useApp = create<AppStore>((set) => ({
     try {
       const res = await axios.post("/api/signup", formData);
       if (res.status === 200) {
+        window.location.href = "/";
         toast.success("Signup Successul");
       }
     } catch (error) {
@@ -18,6 +19,7 @@ const useApp = create<AppStore>((set) => ({
     try {
       const res = await axios.post("/api/login", formData);
       if (res.status === 200) {
+        window.location.href = "/";
         toast.success("Login Successul");
         set({ user: res.data });
       }
@@ -38,9 +40,9 @@ const useApp = create<AppStore>((set) => ({
   },
   logout: async () => {
     const res = await axios.post("/api/logout");
-    if(res.status === 200){
+    if (res.status === 200) {
       toast.success("Logout Successful");
-      set({user: null})
+      set({ user: null });
     }
   },
 }));

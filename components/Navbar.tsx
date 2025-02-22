@@ -35,11 +35,7 @@ function Navbar() {
 
       {user ? (
         <div className="flex gap-3 md:gap-5 justify-center items-center">
-          <Button
-            variant={"outline"}
-            className="hidden md:flex"
-            onClick={() => router.push("/dashboard")}
-          >
+          <Button variant="outline" className="hidden md:flex" onClick={() => router.push("/dashboard")}>
             <LayoutDashboard /> Dashboard
           </Button>
 
@@ -85,14 +81,8 @@ function Navbar() {
                 fill="none"
                 className="mt-0.5 ml-2 -mr-1 stroke-white stroke-2"
               >
-                <path
-                  d="M0 5h7"
-                  className="transition opacity-0 group-hover:opacity-100"
-                ></path>
-                <path
-                  d="M1 1l4 4-4 4"
-                  className="transition group-hover:translate-x-[3px]"
-                ></path>
+                <path d="M0 5h7" className="transition opacity-0 group-hover:opacity-100"></path>
+                <path d="M1 1l4 4-4 4" className="transition group-hover:translate-x-[3px]"></path>
               </svg>
             </a>
           </div>
