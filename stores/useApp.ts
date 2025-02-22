@@ -4,6 +4,7 @@ import { create } from "zustand";
 import axios from "axios";
 const useApp = create<AppStore>((set) => ({
   user: null,
+  incomeSources: null,
   signup: async (formData) => {
     try {
       const res = await axios.post("/api/signup", formData);
@@ -43,6 +44,32 @@ const useApp = create<AppStore>((set) => ({
     if (res.status === 200) {
       toast.success("Logout Successful");
       set({ user: null });
+    }
+  },
+  addIncomeSource: async (formData) => {
+    try {
+      const res = await axios.post("/api/income", formData);
+      if (res.status === 200) {
+        toast.success("Added new income source");
+      }
+    } catch (error) {
+      toast.error("Failed to add income source");
+    }
+  },
+  fetchIncomeSources: async () => {
+    const res = await axios.get("/api/income");
+    if (res.status === 200) {
+      set({ incomeSources: res.data });
+    }
+  },
+  deleteIncomeSource: async (id) => {
+    try {
+      const res = await axios.delete(`/api/income?id=${id}`);
+      if (res.status === 200) {
+        toast.success("Income Source Deleted");
+      }
+    } catch (error) {
+      toast.error("Failed to delete income source");
     }
   },
 }));

@@ -18,8 +18,9 @@ export async function generateTokenAndSetCookie(
 }
 export const getToken = async () => {
   const token = (await cookies()).get("token")?.value;
-  if (token) {
+  if (token) {  
     const decoded = jwt.verify(token, SECRET_KEY) as { id: number };
     return decoded.id;
   }
 };
+  
