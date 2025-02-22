@@ -1,10 +1,9 @@
 import { loginSchema } from "@/lib/zodSchemas";
-import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { generateTokenAndSetCookie } from "@/lib/generateToken";
+import prisma from "@/lib/prisma";
 
-const prisma = new PrismaClient();
 
 export async function POST(req: Request) {
   try {
