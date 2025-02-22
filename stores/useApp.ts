@@ -9,10 +9,10 @@ const useApp = create<AppStore>((set) => ({
     try {
       const res = await axios.post("/api/signup", formData);
       if (res.status === 200) {
-        window.location.href = "/";
+        window.location.href = "/dashboard";
         toast.success("Signup Successul");
       }
-    } catch (error) {
+    } catch {
       toast.error("Failed to signup");
     }
   },
@@ -20,11 +20,11 @@ const useApp = create<AppStore>((set) => ({
     try {
       const res = await axios.post("/api/login", formData);
       if (res.status === 200) {
-        window.location.href = "/";
+        window.location.href = "/dashboard";
         toast.success("Login Successul");
         set({ user: res.data });
       }
-    } catch (error) {
+    } catch {
       toast.error("Failed to login");
       set({ user: null });
     }
@@ -35,7 +35,7 @@ const useApp = create<AppStore>((set) => ({
       if (res.status === 200) {
         set({ user: res.data });
       }
-    } catch (error) {
+    } catch {
       set({ user: null });
     }
   },
@@ -43,6 +43,7 @@ const useApp = create<AppStore>((set) => ({
     const res = await axios.post("/api/logout");
     if (res.status === 200) {
       toast.success("Logout Successful");
+      window.location.href = "/";
       set({ user: null });
     }
   },
@@ -52,7 +53,7 @@ const useApp = create<AppStore>((set) => ({
       if (res.status === 200) {
         toast.success("Added new income source");
       }
-    } catch (error) {
+    } catch {
       toast.error("Failed to add income source");
     }
   },
@@ -68,7 +69,7 @@ const useApp = create<AppStore>((set) => ({
       if (res.status === 200) {
         toast.success("Income Source Deleted");
       }
-    } catch (error) {
+    } catch {
       toast.error("Failed to delete income source");
     }
   },

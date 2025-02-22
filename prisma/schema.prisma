@@ -20,6 +20,7 @@ model Budgets {
   id     Int    @id @default(autoincrement())
   name   String
   amount Float
+  spent Float @default(0)
   icon   String
   userId Int
   User   User   @relation(fields: [userId], references: [id])
