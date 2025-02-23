@@ -25,7 +25,6 @@ export default function Expenses() {
         setExpenses(res.data);
       }
     } catch (error) {
-      console.error("Error fetching expenses:", error);
       setExpenses([]);
     }
   }
@@ -50,7 +49,7 @@ export default function Expenses() {
             <TableRow key={row.id} className="hover:bg-accent transition">
               <TableCell>{row.name}</TableCell>
               <TableCell>{row.Budgets?.name || "N/A"}</TableCell>
-              <TableCell className="font-semibold">${row.amount}</TableCell>
+              <TableCell className="font-semibold">₹{row.amount}</TableCell>
             </TableRow>
           ))}
         </TableBody>

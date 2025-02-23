@@ -7,6 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
 model User {
   id       Int       @id @default(autoincrement())
   name     String
@@ -26,7 +27,6 @@ model Budgets {
   spent  Float  @default(0)
   User   User   @relation(fields: [userId], references: [id])
   expenses Expenses[]
-
 }
 
 model Incomes {
@@ -37,7 +37,6 @@ model Incomes {
   userId Int
   User   User   @relation(fields: [userId], references: [id])
 }
-
 
 model Expenses {
   id Int @id @default(autoincrement())

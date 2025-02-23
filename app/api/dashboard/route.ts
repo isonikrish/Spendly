@@ -99,8 +99,14 @@ export async function getExpenses() {
         amount: true,
         createdAt: true,
       },
+      
     });
-    return data;
+    const formattedData = data.map(expense => ({
+      ...expense,
+      createdAt: expense.createdAt.toISOString(),
+    }));
+    
+    return formattedData;
   } catch (error) {
     console.log(error);
   }

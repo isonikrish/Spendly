@@ -1,22 +1,33 @@
-function FinanSmartAi() {
+"use client"
+import getFinancialAdvice from "@/lib/generateAdvice";
+import { Sparkles } from "lucide-react";
+import { useEffect, useState } from "react";
+interface FinancialData {
+
+  totalBudget: string | number;
+  totalIncome: string | number;
+  totalSpent: string |number;
+}
+
+function FinanSmartAi({ totalBudget, totalIncome, totalSpent }: FinancialData) {
+  const [advice, setAdvice] = useState("")
+  async function fetchAdvice(){
+    const result = await getFinancialAdvice(totalBudget, totalIncome, totalSpent)
+    if(result){
+      setAdvice(result)
+    }
+  }
+  useEffect(()=> {
+    fetchAdvice()
+  },[])
   return (
     <div className="h-auto w-full border border-white rounded-md p-5 my-10">
       <div className="flex justify-between items-center">
         <div className="flex flex-col gap-3">
-          <h1 className="text-2xl font-bold">FinanSmart AI</h1>
-          <p className="text-[#bcbcbc]">
-            Get insights on your spending pattern and get suggestions on how to
-            save more
-          </p>
+          <h1 className="text-2xl font-bold flex gap-2 items-center">Spendly AI <Sparkles /></h1>
+          {advice}
         </div>
-        <div className="flex items-center gap-5">
-          <button className="bg-[#193295] text-white rounded-md px-5 py-2">
-            View Insights
-          </button>
-          <button className="bg-[#193295] text-white rounded-md px-5 py-2">
-            Get Suggestions
-          </button>
-        </div>
+
       </div>
     </div>
   );
