@@ -1,5 +1,4 @@
 import { createAccount } from "@/lib/zodSchemas";
-import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import prisma from "@/lib/prisma";
@@ -8,6 +7,7 @@ import prisma from "@/lib/prisma";
 export async function POST(req: Request) {
   try {
     const data = await req.json();
+    
     const validatedData = createAccount.safeParse(data);
     if (!validatedData.success) {
       return NextResponse.json(
