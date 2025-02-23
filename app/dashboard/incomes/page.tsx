@@ -30,10 +30,15 @@ function Incomes() {
             >
               <div className="flex items-center justify-between">
                 <span className="text-2xl">{income.icon || "✅"}</span>
-                <Trash className="cursor-pointer text-red-500 hover:text-red-700" onClick={()=>deleteIncomeSource(income.id)}/>
+                <Trash
+                  className="cursor-pointer text-red-500 hover:text-red-700"
+                  onClick={() => deleteIncomeSource(income.id)}
+                />
               </div>
               <p className="text-lg font-semibold">{income.name}</p>
-              <p className="text-lg font-bold text-blue-600">${income.amount}</p>
+              <p className="text-lg font-bold text-blue-600">
+                ₹{income.amount}
+              </p>
             </div>
           ))
         )}

@@ -14,16 +14,19 @@ model User {
   password String
   Budgets  Budgets[]
   Incomes  Incomes[]
+  Expenses Expenses[]
 }
 
 model Budgets {
   id     Int    @id @default(autoincrement())
   name   String
   amount Float
-  spent Float @default(0)
   icon   String
   userId Int
+  spent  Float  @default(0)
   User   User   @relation(fields: [userId], references: [id])
+  expenses Expenses[]
+
 }
 
 model Incomes {
@@ -33,4 +36,16 @@ model Incomes {
   icon   String
   userId Int
   User   User   @relation(fields: [userId], references: [id])
+}
+
+
+model Expenses {
+  id Int @id @default(autoincrement())
+  name String
+  amount Float @default(0)
+  createdAt DateTime @default(now())
+  budgetId Int
+  budget Budgets @relation(fields: [budgetId], references: [id])
+  userId Int
+  user User @relation(fields: [userId], references: [id])
 }

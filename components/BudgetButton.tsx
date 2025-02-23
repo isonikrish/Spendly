@@ -96,7 +96,7 @@ export default function BudgetButton() {
                 <Input
                   className="text-white"
                   type="number"
-                  placeholder="e.g. 5000$"
+                  placeholder="e.g. 5000₹"
                   onChange={(e) => setAmount(e.target.value)}
                 />
               </div>

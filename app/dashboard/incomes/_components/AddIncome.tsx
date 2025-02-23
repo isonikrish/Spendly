@@ -31,7 +31,7 @@ function AddIncome() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="border w-[300px] h-[150px] rounded-lg flex flex-col justify-center items-center cursor-pointer gap-3">
+        <div className="border w-[300px] h-auto rounded-lg flex flex-col justify-center items-center cursor-pointer gap-3">
           <Plus />
           Create a New Income Source
         </div>
@@ -72,7 +72,7 @@ function AddIncome() {
             <Label>Monthly Amount</Label>
             <Input
               type="number"
-              placeholder="e.g. 5000$"
+              placeholder="e.g. 5000₹"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
             />

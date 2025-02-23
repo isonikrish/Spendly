@@ -7,9 +7,9 @@ interface Budget {
   spent: number;
 }
 
-export default function BudgetCard({ budget }: { budget: Budget }) {
+export default function DashboardBudgetCard({ budget }: { budget: Budget }) {
   return (
-    <div className="h-52 w-96 flex flex-col border-2 border-white rounded-lg p-6 mr-5 ">
+    <div className="h-52 w-full flex flex-col border-2 border-white rounded-lg p-6 mr-5 ">
       <div className="flex justify-between items-center h-14">
         <div className="flex justify-between items-center">
           <div className="h-16 w-16 flex items-center justify-center p-5">
