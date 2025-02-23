@@ -1,6 +1,7 @@
-import { Progress } from "@/components/ui/progress";
+import Link from "next/link";
 
 interface Budget {
+  id: number;
   icon: string;
   name: string;
   amount: number;
@@ -8,8 +9,14 @@ interface Budget {
 }
 
 export default function BudgetCard({ budget }: { budget: Budget }) {
+  const progressValue =
+    budget.amount > 0 ? (budget.spent / budget.amount) * 100 : 0;
+
   return (
-    <div className="h-52 w-96 flex flex-col border-2 border-white rounded-lg p-6 mr-5 ">
+    <Link
+      className="w-96 flex flex-col border-2 border-white rounded-lg p-6 mr-5 hover:bg-secondary"
+      href={`/dashboard/expenses/${budget?.id}`}
+    >
       <div className="flex justify-between items-center h-14">
         <div className="flex justify-between items-center">
           <div className="h-16 w-16 flex items-center justify-center p-5">
@@ -23,15 +30,20 @@ export default function BudgetCard({ budget }: { budget: Budget }) {
           {`₹${budget.amount}`}
         </div>
       </div>
+
       <div className="text-white my-6">
         <div className="flex justify-between items-center my-3  ">
           <div>{`₹${budget.spent}`}</div>
           <div>{`₹${budget.amount - budget.spent}`}</div>
         </div>
-        <div>
-          <Progress value={(budget.amount * budget.spent) / 100}></Progress>
+
+        <div className="w-full bg-gray-700 rounded-full h-3">
+          <div
+            className="h-3 bg-green-400 rounded-full transition-all duration-300"
+            style={{ width: `${progressValue}%` }}
+          />
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
