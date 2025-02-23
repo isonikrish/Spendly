@@ -4,7 +4,6 @@ import BudgetCard from "@/components/BudgetCard";
 
 async function Budgets() {
   const budgets = await getBudgets();
-
   return (
     <div className="h-[calc(100vh-69px)] w-auto p-10">
       <h1 className="font-bold text-5xl">My Budgets</h1>
