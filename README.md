@@ -61,8 +61,6 @@ http://localhost:3000
 
 - Email: `testuser@example.com`, Password: `123456`
 
-- Email: `testuser2@example.com`, Password: `123456`
-
 ## Contributors
 
 <a href="https://github.com/isonikrish/Spendly/graphs/contributors">
