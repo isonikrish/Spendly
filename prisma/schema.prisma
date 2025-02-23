@@ -7,7 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-<<<<<<< HEAD
 model User {
   id       Int       @id @default(autoincrement())
   name     String
@@ -28,17 +27,6 @@ model Budgets {
   User   User   @relation(fields: [userId], references: [id])
   expenses Expenses[]
 
-=======
-model Budgets {
-  id       Int        @id @default(autoincrement())
-  name     String
-  amount   Float
-  icon     String
-  userId   Int
-  spent    Float      @default(0)
-  User     User       @relation(fields: [userId], references: [id])
-  Expenses Expenses[]
->>>>>>> 52528b85859e6443957a1724c9c7f9e0506ae870
 }
 
 model Incomes {
@@ -50,7 +38,6 @@ model Incomes {
   User   User   @relation(fields: [userId], references: [id])
 }
 
-<<<<<<< HEAD
 
 model Expenses {
   id Int @id @default(autoincrement())
@@ -62,24 +49,3 @@ model Expenses {
   userId Int
   user User @relation(fields: [userId], references: [id])
 }
-=======
-model User {
-  id       Int        @id @default(autoincrement())
-  name     String
-  email    String     @unique
-  password String
-  Budgets  Budgets[]
-  Expenses Expenses[]
-  Incomes  Incomes[]
-}
-
-model Expenses {
-  id       Int     @id @default(autoincrement())
-  name     String
-  amount   Float   @default(0)
-  budgetId Int
-  userId   Int
-  Budgets  Budgets @relation(fields: [budgetId], references: [id])
-  User     User    @relation(fields: [userId], references: [id])
-}
->>>>>>> 52528b85859e6443957a1724c9c7f9e0506ae870
