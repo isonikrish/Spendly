@@ -4,40 +4,47 @@ import { CircleDollarSign, PiggyBank, ReceiptText, Wallet } from "lucide-react";
 import { JSX } from "react";
 
 export default async function DashboardHeroSection() {
-  const { data, totalBudget, totalSpent, numberOfBudgets, totalIncome } =
-    await getDetails();
+  const details = await getDetails();
+
+  if (
+    !details ||
+    details.data == null ||
+    details.totalBudget == null ||
+    details.totalSpent == null ||
+    details.numberOfBudgets == null ||
+    details.totalIncome == null
+  ) {
+    console.error("Error: Some required fields are missing", details);
+    return <div>Error: Some required fields are missing. Please try again.</div>;
+  }
+
+  const { data, totalBudget, totalSpent, numberOfBudgets, totalIncome } = details;
+
+
   return (
     <div>
-      <h1 className="font-bold text-5xl">Hi, {data?.name} 👋 </h1>
+      <h1 className="font-bold text-5xl">Hi, {data?.name || "User"} 👋 </h1>
       <p className="text-xl font-semibold text-[#bcbcbc] mt-2">
-        Here&apos;s what happenning with your money, Let&apos;s Manage your
-        expense
+        Here&apos;s what happening with your money, Let&apos;s Manage your expense
       </p>
-      <FinanSmartAi />
+      <FinanSmartAi totalBudget={formatNumber(totalBudget)} totalIncome={formatNumber(totalIncome)}
+        totalSpent={formatNumber(totalSpent)}
+      />
       <div className="flex flex-wrap items-center mt-10 gap-5 w-full">
-        <InfoCard
-          title={"Total Budget"}
-          amount={"₹" + totalBudget}
-          icon={<PiggyBank />}
-        />
-        <InfoCard
-          title={"Total Spend"}
-          amount={"₹" + totalSpent}
-          icon={<ReceiptText />}
-        />
-        <InfoCard
-          title={"No. of Budgets"}
-          amount={numberOfBudgets ?? 0}
-          icon={<Wallet />}
-        />
-        <InfoCard
-          title={"Total Income"}
-          amount={"₹" + totalIncome}
-          icon={<CircleDollarSign />}
-        />
+        <InfoCard title="Total Budget" amount={"₹" + formatNumber(totalBudget)} icon={<PiggyBank />} />
+        <InfoCard title="Total Spend" amount={"₹" + formatNumber(totalSpent)} icon={<ReceiptText />} />
+        <InfoCard title="No. of Budgets" amount={formatNumber(numberOfBudgets)} icon={<Wallet />} />
+        <InfoCard title="Total Income" amount={"₹" + formatNumber(totalIncome)} icon={<CircleDollarSign />} />
       </div>
     </div>
   );
+}
+
+function formatNumber(value: any): string | number {
+  if (value instanceof Date) {
+    return value.toISOString();
+  }
+  return typeof value === "number" ? value : "0";
 }
 
 function InfoCard({
