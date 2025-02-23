@@ -9,20 +9,21 @@ const getFinancialAdvice = async (
   try {
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
     const prompt = `
-            Based on the following financial data: 
-            - Total Income is - ${totalIncome}
-            - Total Budget is - ${totalBudget}
-            - Total Spend is - ${totalSpent}
-            provide me financial advice in 4 sentences to help me manage my finances more effectively in India.
-        `;
+      I need personalized financial advice based on the following details:
+      - Total Income: ${totalIncome}
+      - Total Budget: ${totalBudget}
+      - Total Spent: ${totalSpent}
+
+    provide me financial advice in 4 sentences to help me manage my finances more effectively in India.
+
+    `;
     const result = await model.generateContent(prompt);
     const response = await result.response;
-    const advice = response.text()
+    const advice = response.text();
     return advice;
   } catch (error) {
     return "Sorry, I couldn't fetch the financial advice at this moment. Please try again later.";
   }
 };
-
 
 export default getFinancialAdvice;
