@@ -22,7 +22,6 @@ async function ExpenseListTable() {
             <TableHead className="w-[100px] font-bold">Name</TableHead>
             <TableHead>Amount</TableHead>
             <TableHead>Date</TableHead>
-            <TableHead className="text-right">Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -31,7 +30,6 @@ async function ExpenseListTable() {
               <TableCell className="font-medium">{expense.name}</TableCell>
               <TableCell>{expense.amount}</TableCell>
               <TableCell>{expense.createdAt}</TableCell>
-              <TableCell className="text-right"></TableCell>
             </TableRow>
           ))}
         </TableBody>
