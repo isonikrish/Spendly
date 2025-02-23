@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Spendly
 
-## Getting Started
+Spendly - Simplify your spending, maximize your savings with the help of AI.
 
-First, run the development server:
+## Running Locally
+
+> [!NOTE]  
+> This project uses [npm] only as a package manager.
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/isonikrish/Spendly
+```
+
+2. Navigate to the project directory:
+
+```bash
+cd Spendly
+```
+
+3. Create a .env file:
+
+   - Copy `.env.example` and rename it to `.env`.
+
+   - Give it your DB connection link and Gemini API KEY
+
+4. Install dependencies:
+
+```bash
+npm install
+```
+
+5. Run database migrations:
+
+```bash
+npx prisma migrate dev --name Initialize the schema
+```
+
+6. Generate prisma client
+
+```bash
+npx prisma generate
+```
+
+7. Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Access the application in your browser:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+http://localhost:3000
+```
 
-## Learn More
+2. Login using any of the following provided user credentials:
 
-To learn more about Next.js, take a look at the following resources:
+- Email: `testuser@example.com`, Password: `123456`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Email: `testuser2@example.com`, Password: `123456`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Contributors
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<a href="https://github.com/isonikrish/Spendly/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=isonikrish/Spendly" />
+</a>

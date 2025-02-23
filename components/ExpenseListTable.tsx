@@ -28,7 +28,7 @@ async function ExpenseListTable() {
           {expenses.map((expense) => (
             <TableRow key={expense.id}>
               <TableCell className="font-medium">{expense.name}</TableCell>
-              <TableCell>{expense.amount}</TableCell>
+              <TableCell>₹ {expense.amount}</TableCell>
               <TableCell>{expense.createdAt}</TableCell>
             </TableRow>
           ))}
