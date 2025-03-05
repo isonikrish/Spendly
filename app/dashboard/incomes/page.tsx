@@ -9,7 +9,7 @@ function Incomes() {
 
   useEffect(() => {
     fetchIncomeSources();
-  }, []);
+  });
 
   return (
     <div className="px-10 py-5">

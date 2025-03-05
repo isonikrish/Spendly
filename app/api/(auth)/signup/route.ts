@@ -3,11 +3,10 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import prisma from "@/lib/prisma";
 
-
 export async function POST(req: Request) {
   try {
     const data = await req.json();
-    
+
     const validatedData = createAccount.safeParse(data);
     if (!validatedData.success) {
       return NextResponse.json(
@@ -49,6 +48,7 @@ export async function POST(req: Request) {
       { status: 200 }
     );
   } catch (error) {
+    console.log(error);
     return NextResponse.json({ msg: "Internal Server Error" }, { status: 500 });
   }
 }

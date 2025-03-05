@@ -4,7 +4,6 @@ import bcrypt from "bcryptjs";
 import { generateTokenAndSetCookie } from "@/lib/generateToken";
 import prisma from "@/lib/prisma";
 
-
 export async function POST(req: Request) {
   try {
     const data = await req.json();
@@ -32,11 +31,20 @@ export async function POST(req: Request) {
 
     const response = NextResponse.json({ msg: "Success" }, { status: 200 });
     if (!user?.id) {
-      return NextResponse.json({ id: user?.id, name: user?.name, email: user?.email, password: user?.password }, { status: 500 });
+      return NextResponse.json(
+        {
+          id: user?.id,
+          name: user?.name,
+          email: user?.email,
+          password: user?.password,
+        },
+        { status: 500 }
+      );
     }
     const res = generateTokenAndSetCookie(user?.id, response);
     return res;
   } catch (error) {
+    console.log(error);
     return NextResponse.json({ msg: "Internal Server Error" }, { status: 500 });
   }
 }

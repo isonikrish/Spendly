@@ -1,6 +1,5 @@
 import { getToken } from "@/lib/generateToken";
 import prisma from "@/lib/prisma";
-import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -19,7 +18,8 @@ export async function GET() {
     }
 
     return NextResponse.json(user, { status: 200 });
-  } catch (_error) {
+  } catch (error) {
+    console.log(error);
     return NextResponse.json({ msg: "Internal Server Error" }, { status: 500 });
   }
 }

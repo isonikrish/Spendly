@@ -50,7 +50,6 @@ export async function getBudgets() {
       where: {
         userId: Number(userId),
       },
-
     });
     return { success: true, data: budgets };
   } catch (error) {
@@ -62,25 +61,25 @@ export async function getBudgets() {
   }
 }
 
-
-export async function GET(req: Request){
+export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
     const id = searchParams.get("id");
-    if(!id){
-      return NextResponse.json({msg: "No id provided"}, {status: 400})
+    if (!id) {
+      return NextResponse.json({ msg: "No id provided" }, { status: 400 });
     }
     const parsedId = parseInt(id);
     const budget = await prisma.budgets.findUnique({
-      where: {id: parsedId}
-    })
+      where: { id: parsedId },
+    });
 
-    if(!budget){
-      return NextResponse.json({msg: "No budget found"}, {status: 400});
+    if (!budget) {
+      return NextResponse.json({ msg: "No budget found" }, { status: 400 });
     }
 
-    return NextResponse.json(budget, {status: 200});
+    return NextResponse.json(budget, { status: 200 });
   } catch (error) {
-    return NextResponse.json({msg: "Internal Server Error"}, {status: 500});
+    console.log(error);
+    return NextResponse.json({ msg: "Internal Server Error" }, { status: 500 });
   }
 }

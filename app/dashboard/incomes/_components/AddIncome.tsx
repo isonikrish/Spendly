@@ -18,15 +18,12 @@ function AddIncome() {
   const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
   const [sourceName, setName] = useState("");
   const [amount, setAmount] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const { addIncomeSource } = useApp();
   const handleAddNewIncomeSource = async () => {
     const data = { sourceName, amount: parseInt(amount) || 0, emojiIcon };
     console.log(data);
-    setIsLoading(true);
     await addIncomeSource(data);
     window.location.reload();
-    setIsLoading(false);
   };
   return (
     <Dialog>

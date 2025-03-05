@@ -36,6 +36,7 @@ export async function POST(req: Request) {
       { status: 200 }
     );
   } catch (error) {
+    console.log(error);
     return NextResponse.json({ msg: "Internal Server Error" }, { status: 500 });
   }
 }
@@ -62,6 +63,7 @@ export async function GET() {
 
     return NextResponse.json(incomeSources, { status: 200 });
   } catch (error) {
+    console.log(error);
     return NextResponse.json({ msg: "Internal Server Error" }, { status: 500 });
   }
 }
@@ -69,15 +71,16 @@ export async function DELETE(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
     const id = searchParams.get("id");
-    if(!id){
-      return NextResponse.json({msg: "No id provided"}, {status: 400})
+    if (!id) {
+      return NextResponse.json({ msg: "No id provided" }, { status: 400 });
     }
     const parsedId = parseInt(id);
     await prisma.incomes.delete({
-      where: {id: parsedId}
-    })
+      where: { id: parsedId },
+    });
     return NextResponse.json({ msg: "Deleted Income Source" }, { status: 200 });
   } catch (error) {
+    console.log(error);
     return NextResponse.json({ msg: "Internal Server Error" }, { status: 500 });
   }
 }

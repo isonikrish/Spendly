@@ -1,8 +1,7 @@
 "use client";
-
 import axios from "axios";
 import { ArrowLeft } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useParams } from "next/navigation";
 import BudgetCard from "@/components/BudgetCard";
 import { Label } from "@/components/ui/label";
@@ -29,7 +28,8 @@ function Expense() {
     amount: "",
   });
 
-  async function fetchBudget() {
+  // Wrap fetchBudget in useCallback to prevent redefinition on every render
+  const fetchBudget = useCallback(async () => {
     if (!id) return;
 
     setLoading(true);
@@ -38,16 +38,16 @@ function Expense() {
       if (res.data) {
         setBudget(res.data);
       }
-    } catch (error) {
+    } catch {
       setBudget(null);
     } finally {
       setLoading(false);
     }
-  }
+  }, [id]); // Dependency on id to refetch if id changes
 
   useEffect(() => {
     fetchBudget();
-  }, [id]);
+  }, [fetchBudget]); // Dependency on fetchBudget to avoid unnecessary rerenders
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -73,11 +73,11 @@ function Expense() {
 
       if (res.status === 200) {
         fetchBudget();
-        setFormData({ name: "", amount: "" }); 
+        setFormData({ name: "", amount: "" });
       } else {
         setError("Failed to add expense.");
       }
-    } catch (err) {
+    } catch {
       setError("Something went wrong.");
     } finally {
       setSubmitting(false);

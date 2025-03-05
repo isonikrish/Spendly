@@ -22,6 +22,7 @@ const getFinancialAdvice = async (
     const advice = response.text();
     return advice;
   } catch (error) {
+    console.log(error);
     return "Sorry, I couldn't fetch the financial advice at this moment. Please try again later.";
   }
 };
